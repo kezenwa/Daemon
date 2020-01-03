@@ -4,9 +4,9 @@ use Gt\Daemon\Process;
 use Gt\Daemon\Pool;
 
 // Create three long-running processes:
-$pingProcess = new Process("ping google.com");
-$infiniteProcess = new Process("while true; do echo 'background...'; sleep 3; done");
-$dateProcess = new Process("while true; do echo $(date -d now); sleep 2; done");
+$pingProcess = new Process("ping", "google.com");
+$infiniteProcess = new Process("sh", "background.sh");
+$dateProcess = new Process("sh", "date.sh");
 
 // Add all three processes to a pool:
 $pool = new Pool();
