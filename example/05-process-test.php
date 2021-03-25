@@ -1,5 +1,5 @@
 <?php
-require "../src/Process.php";
+require(__DIR__ . "/../vendor/autoload.php");
 
 use Gt\Daemon\Process;
 

@@ -21,9 +21,9 @@ while(true) {
         fwrite(STDERR, "An error occurred on letter '$i'!" . PHP_EOL);
     }
 
-	
+
 	$i++;
-	if($j++ > 25 ){
+	if($j++ >= 25 ){
 	    exit(0);
     }
 

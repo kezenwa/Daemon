@@ -12,16 +12,16 @@ sleep(1);
 $i = $j = 0;
 while(true) {
 	fwrite(STDOUT, "The number is '$i'." . PHP_EOL);
-	
+
 	if($i % 5 === 0 && $i > 0) {
 		fwrite(STDERR, "An error occurred on number '$i'!" . PHP_EOL);
 	}
-	
+
 	$i++;
-	
+
 	sleep(1);
 
-	if($j++ > 20){
+	if($j++ >= 20){
 	    exit(9);
     }
 }

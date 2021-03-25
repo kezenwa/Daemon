@@ -45,12 +45,16 @@ class Process {
 		$oldCwd = getcwd();
 		chdir($this->cwd);
 
+		$command = $this->command;
+
+		if(count($this->command) === 1) {
+			$command = $this->command[0];
+		}
+
 		// Parameter #1 of proc_open is an array
 		// @see https://www.php.net/manual/en/function.proc-open.php
-
 		$this->process = proc_open(
-		/** @phpstan-param string[] */
-			$this->command,
+			$command,
 			$descriptor,
 			$this->pipes
 		);
