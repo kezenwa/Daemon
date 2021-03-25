@@ -7,7 +7,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class PoolTest extends TestCase {
-	public function testAddExec() {
+	public function testAddExec():void {
 		/** @var MockObject|Process $proc1 */
 		$proc1 = self::createMock(Process::class);
 		$proc1->expects($this->once())
@@ -24,7 +24,7 @@ class PoolTest extends TestCase {
 		$sut->exec();
 	}
 
-	public function testNumRunning() {
+	public function testNumRunning():void {
 		/** @var MockObject|Process $proc1 */
 		$proc1 = self::createMock(Process::class);
 		$proc1->method("isRunning")
@@ -45,7 +45,7 @@ class PoolTest extends TestCase {
 		);
 	}
 
-	public function testRead() {
+	public function testRead():void {
 		/** @var MockObject|Process $proc1 */
 		$proc1 = self::createMock(Process::class);
 		$proc1->method("getOutput")
@@ -95,7 +95,7 @@ class PoolTest extends TestCase {
 		);
 	}
 
-	public function testReadError() {
+	public function testReadError():void {
 		/** @var MockObject|Process $proc1 */
 		$proc1 = self::createMock(Process::class);
 		$proc1->method("getOutput")
@@ -135,7 +135,7 @@ class PoolTest extends TestCase {
 		);
 	}
 
-	public function testReadOutputOfNotExists() {
+	public function testReadOutputOfNotExists():void {
 		/** @var MockObject|Process $proc1 */
 		$proc1 = self::createMock(Process::class);
 		/** @var MockObject|Process $proc2*/
@@ -149,7 +149,7 @@ class PoolTest extends TestCase {
 		$sut->readOutputOf("test3");
 	}
 
-	public function testReadOutputOf() {
+	public function testReadOutputOf():void {
 		/** @var MockObject|Process $proc1 */
 		$proc1 = self::createMock(Process::class);
 		$proc1->method("getOutput")
@@ -171,7 +171,7 @@ class PoolTest extends TestCase {
 		self::assertEquals("Output from proc2", $output2);
 	}
 
-	public function testReadErrorOf() {
+	public function testReadErrorOf():void {
 		/** @var MockObject|Process $proc1 */
 		$proc1 = self::createMock(Process::class);
 		$proc1->method("getOutput")
@@ -195,7 +195,7 @@ class PoolTest extends TestCase {
 		self::assertEquals("Error from proc2", $output2);
 	}
 
-	public function testClose() {
+	public function testClose():void {
 		/** @var MockObject|Process $proc1 */
 		$proc1 = self::createMock(Process::class);
 		$proc1->expects($this->once())

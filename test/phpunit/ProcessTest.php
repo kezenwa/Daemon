@@ -10,7 +10,7 @@ use RecursiveIteratorIterator;
 use SplFileInfo;
 
 class ProcessTest extends TestCase {
-	protected $tmpBase;
+	protected string $tmpBase;
 
 	protected function setUp():void {
 		$this->tmpBase = implode(DIRECTORY_SEPARATOR, [
@@ -54,7 +54,7 @@ class ProcessTest extends TestCase {
 		rmdir($this->tmpBase);
 	}
 
-	public function testExec() {
+	public function testExec():void {
 		$tmpFile = implode(DIRECTORY_SEPARATOR, [
 			$this->tmpBase,
 			uniqid(),
@@ -73,7 +73,7 @@ class ProcessTest extends TestCase {
 		self::assertFileExists($tmpFile);
 	}
 
-	public function testExecFailure() {
+	public function testExecFailure():void {
 		$sut = new Process("/this/does/not/exist/" . uniqid());
 		$sut->setBlocking();
 
@@ -85,7 +85,7 @@ class ProcessTest extends TestCase {
 		self::assertEquals(127, $sut->getExitCode());
 	}
 
-	public function testGetCommand() {
+	public function testGetCommand():void {
 		$rawCommand = [
 			"/path/to/binary",
 			"attr1key=attr1value",
@@ -100,13 +100,13 @@ class ProcessTest extends TestCase {
 		);
 	}
 
-	public function testGetOutputNotRunning() {
+	public function testGetOutputNotRunning():void {
 		self::expectExceptionMessage("Process is not running");
 		$sut = new Process("echo 'test-message'");
 		$sut->getOutput();
 	}
 
-	public function testGetOutput() {
+	public function testGetOutput():void {
 		$sut = new Process("echo", "test-message");
 		$sut->exec();
 
@@ -118,20 +118,20 @@ class ProcessTest extends TestCase {
 		self::assertEquals("test-message\n", $output);
 	}
 
-	public function testExecutingNonExistantCommand() {
+	public function testExecutingNonExistentCommand():void {
 		$sut = new Process("/does/not/exist");
 
 		self::expectException(CommandNotFoundException::class);
 		$sut->exec();
 	}
 
-	public function testGetExistCodeRunning() {
+	public function testGetExistCodeRunning():void {
 		$sut = new Process("sleep", "1");
 		$sut->exec();
 		self::assertNull($sut->getExitCode());
 	}
 
-	public function testGetExitCodeTerminate() {
+	public function testGetExitCodeTerminate():void {
 		$sut = new Process("echo", "quick");
 		$sut->exec();
 
@@ -142,18 +142,18 @@ class ProcessTest extends TestCase {
 		self::assertEquals(0, $sut->getExitCode());
 	}
 
-	public function testGetPidNotRunning() {
+	public function testGetPidNotRunning():void {
 		$sut = new Process("echo", "not running");
 		self::assertNull($sut->getPid());
 	}
 
-	public function testGetPid() {
+	public function testGetPid():void {
 		$sut = new Process("sleep", "1");
 		$sut->exec();
 		self::assertIsInt($sut->getPid());
 	}
 
-	public function testExecBlocking() {
+	public function testExecBlocking():void {
 		$sut = new Process("sleep", "0.1");
 		$sut->exec();
 		self::assertTrue($sut->isRunning());
