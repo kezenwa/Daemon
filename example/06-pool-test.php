@@ -3,8 +3,6 @@ use \Gt\Daemon\Pool;
 use \Gt\Daemon\Process;
 
 require_once(__DIR__ . "/../vendor/autoload.php");
-require_once '../src/Pool.php';
-require_once '../src/Process.php';
 
 $pool = new Pool();
 
